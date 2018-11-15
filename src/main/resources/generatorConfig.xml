@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="true"/>
+            <property name="forceAnnotation" value="true"/>
+        </plugin>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.0.8:2506/oa?useSSL=false"
+                        userId="root"
+                        password="123.abc.X">
+        </jdbcConnection>
+
+        <!-- 实体创建 -->
+        <javaModelGenerator targetPackage="zool.firefly.domain.entity" targetProject="src/main/java"/>
+        <!-- xml sql -->
+        <sqlMapGenerator targetPackage="zool.firefly.mapper" targetProject="src/main/resources"/>
+        <!-- mapper -->
+        <javaClientGenerator targetPackage="zool.firefly.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+
+
+
+        <table tableName="ali_new_customer"  domainObjectName="AliNewCustomer" >
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

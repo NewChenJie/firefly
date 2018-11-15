@@ -1,9 +1,8 @@
-package zool.firefly.dao;
+package zool.firefly.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import zool.firefly.entity.AliCustomerVo;
+import zool.firefly.domain.vo.AliCustomerVo;
 
 import java.util.List;
 
@@ -12,7 +11,6 @@ import java.util.List;
  * @date : 2018-11-03 12:10
  * @describe :
  */
-@Mapper
 @Repository
 public interface AliCustomerMapper {
 

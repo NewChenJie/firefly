@@ -3,14 +3,10 @@ spring:
     url: jdbc:mysql://localhost:3306/oa?useSSL=false
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver: com.mysql.jdbc.Driver
+    callSettersOnNulls: true
 
-mybatis:
-  mapper-locations: classpath*:mapper/*.xml
 
 logging:
   level:
     zool.firefly.dao: debug
-
-server:
-  port: 8080

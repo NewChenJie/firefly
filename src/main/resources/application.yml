@@ -1,9 +1,27 @@
+#当前服务器版本 自动读取MAVEN信息 @var@格式
+version: @project.version@
+
+#服务器基本配置
+server:
+ port: 8081
+ session-timeout: 3600
+ uri-encoding: UTF-8
+ servlet:
+   session:
+     cookie:
+       max-age: 900
+#设置启用哪个配置
 spring:
   profiles:
     active: dev
-
+#开启所有的端点监控
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
+#通用mapper
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  notEmpty: true

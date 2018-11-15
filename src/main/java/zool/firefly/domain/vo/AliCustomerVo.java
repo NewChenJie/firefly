@@ -1,4 +1,4 @@
-package zool.firefly.entity;
+package zool.firefly.domain.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

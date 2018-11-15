@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zool.firefly.mapper.AliNewCustomerMapper">
+  <resultMap id="BaseResultMap" type="zool.firefly.domain.entity.AliNewCustomer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="origin_url" jdbcType="VARCHAR" property="originUrl" />
+    <result column="ali_url" jdbcType="VARCHAR" property="aliUrl" />
+    <result column="gmt_identification" jdbcType="VARCHAR" property="gmtIdentification" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="mianbusiness" jdbcType="VARCHAR" property="mianbusiness" />
+    <result column="gmt_get" jdbcType="VARCHAR" property="gmtGet" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+  </resultMap>
+</mapper>
