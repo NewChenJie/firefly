@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zool.firefly.mapper.shiro.AuthorityMapper">
+  <resultMap id="BaseResultMap" type="zool.firefly.domain.entity.shiro.Authority">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="authority_name" jdbcType="VARCHAR" property="authorityName" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+  </resultMap>
+  <select id="selectByRoleId" resultType="zool.firefly.domain.entity.shiro.Authority">
+    SELECT * FROM t_authority where id in (SELECT  authority_id from t_role_authority  where role_id =#{roleId})
+  </select>
+</mapper>

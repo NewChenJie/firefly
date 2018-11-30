@@ -1,15 +1,12 @@
 package zool.firefly.controller;
 
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import zool.firefly.exception.EntityValidException;
 import zool.firefly.mapper.AliNewCustomerMapper;
-import zool.firefly.service.AliService;
 import zool.firefly.util.KeyValue;
-
-import java.util.List;
 
 /**
  * @author : zoolye
@@ -21,14 +18,11 @@ import java.util.List;
 public class AliController {
 
     @Autowired
-    AliService aliService;
-
-    @Autowired
     AliNewCustomerMapper aliNewCustomerMapper;
 
     @RequestMapping("/customer")
     public KeyValue selectAliCustomer(String name,Page page) {
-        return KeyValue.ok();
+        throw new EntityValidException("test");
     }
 
 }

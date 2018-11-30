@@ -1,4 +1,4 @@
-package zool.firefly.service;
+package zool.firefly.service.Impl;
 
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
  * @describe :
  */
 @Service
-public class AliService {
+public class AliServiceImpl {
 
     @Autowired
     AliCustomerMapper aliCustomerMapper;

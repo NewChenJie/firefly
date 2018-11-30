@@ -20,15 +20,15 @@
         </jdbcConnection>
 
         <!-- 实体创建 -->
-        <javaModelGenerator targetPackage="zool.firefly.domain.entity" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="zool.firefly.domain.entity.shiro" targetProject="src/main/java"/>
         <!-- xml sql -->
-        <sqlMapGenerator targetPackage="zool.firefly.mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="zool.firefly.mapper.shiro" targetProject="src/main/resources"/>
         <!-- mapper -->
-        <javaClientGenerator targetPackage="zool.firefly.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="zool.firefly.mapper.shiro" targetProject="src/main/java" type="XMLMAPPER"/>
 
 
 
-        <table tableName="ali_new_customer"  domainObjectName="AliNewCustomer" >
+        <table tableName="t_user"  domainObjectName="User" >
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
     </context>

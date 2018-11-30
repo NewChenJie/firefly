@@ -13,6 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import zool.firefly.exception.GlobalExceptionHandler;
 import zool.firefly.kits.WebKit;
 import zool.firefly.util.KeyValue;
 
@@ -25,18 +26,25 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Aspect
 @Component
+@Order(2)
 public class DebugInterceptor extends HandlerInterceptorAdapter {
     private ThreadLocal<Long> startTime = ThreadLocal.withInitial(System::nanoTime);
     private ThreadLocal<Signature> signature = ThreadLocal.withInitial(() -> null);
     private ThreadLocal<Object[]> paramsCache = ThreadLocal.withInitial(() -> null);
     private ThreadLocal<Object> resultCache = ThreadLocal.withInitial(() -> null);
 
-    @Pointcut("execution(public * zool.firefly.controller.*.*(..))")
+    @Pointcut("execution(public * zool.firefly.controller.*.*(..))" +
+            "execution(public zool.firefly.util.KeyValue zool.firefly.exception.GlobalExceptionHandler.*(..)) ")
     public void resultAop() {}
 
     @Around("resultAop()")
     @SneakyThrows
     public Object resultAround(ProceedingJoinPoint pjp) {
+        // 异常拦截不保存参数
+        if (!(pjp.getThis() instanceof GlobalExceptionHandler)) {
+            signature.set(pjp.getSignature());
+            paramsCache.set(pjp.getArgs());
+        }
         val result = pjp.proceed();
         resultCache.set(result);
         return result;

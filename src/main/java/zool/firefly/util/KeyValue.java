@@ -63,6 +63,13 @@ public class KeyValue extends HashMap<String, Object> {
         return rd(Status.HTTP.OK, msg);
     }
 
+    public static KeyValue err(String msg) {
+        return rd(Status.HTTP.ERROR, msg);
+    }
+    public static KeyValue serverError(String msg) {
+        return rd(Status.HTTP.INTERNAL_SERVER_ERROR, msg);
+    }
+
     /**
      * 正确返回
      *

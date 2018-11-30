@@ -4,6 +4,7 @@ package zool.firefly.constant;
 public class Status {
     public static class HTTP {
         public static final int OK = 200;
+        public static final int ERROR = 202;
         public static final int NOT_MODIFIED = 304;
         public static final int BAD_REQUEST = 400;
         public static final int UNAUTHORIZED = 401;
