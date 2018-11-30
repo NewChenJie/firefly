@@ -15,11 +15,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import zool.firefly.config.ShiroSessionManager;
 import zool.firefly.domain.entity.shiro.User;
 import zool.firefly.util.KeyValue;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 
@@ -28,7 +28,7 @@ import java.util.Collection;
 public class LoginController {
 
     @Autowired
-    private DefaultWebSessionManager sessionManager;
+    private ShiroSessionManager sessionManager;
 
 
     @GetMapping("/login")

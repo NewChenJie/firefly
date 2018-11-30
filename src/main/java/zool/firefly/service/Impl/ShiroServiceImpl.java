@@ -44,10 +44,10 @@ public class ShiroServiceImpl implements ShiroService{
         }
         filterChainDefinitionMap.put("/user/no/login", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");
-        filterChainDefinitionMap.put("/user/logout", "anon");
+        filterChainDefinitionMap.put("/user/logout", "logout");
         filterChainDefinitionMap.put("/test/*", "anon");
-        filterChainDefinitionMap.put("/redis/*", "roles[admin]");
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/redis/*", "roles[admin]");
+        filterChainDefinitionMap.put("/**", "user");
         return filterChainDefinitionMap;
     }
 

@@ -15,10 +15,8 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scripting.support.ResourceScriptSource;
 import redis.clients.jedis.JedisPoolConfig;
-import zool.firefly.util.MySerializer;
 import zool.firefly.util.RedisUtil;
 
-import java.io.Serializable;
 import java.time.Duration;
 
 @Configuration
