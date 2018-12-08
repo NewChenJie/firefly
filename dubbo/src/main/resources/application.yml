@@ -1,0 +1,15 @@
+server:
+  port: 9898
+
+spring:
+  dubbo:
+    application:
+      name: provider
+    server: true
+    #注册中心配置，用于配置连接注册中心相关信息。
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
+    protocol:
+      name: dubbo
+      port: 20880

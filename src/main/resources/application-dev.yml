@@ -5,6 +5,25 @@ spring:
     password: 123.abc.X
     driver: com.mysql.jdbc.Driver
     callSettersOnNulls: true
+  dubbo:
+      application:
+        name: consumer
+      registry:
+        address: zookeeper://127.0.0.1:2181
+      #127.0.0.1:9898?register=false配置直连
+      protocol:
+        name: dubbo
+        port: 20880
+      consumer:
+        check: false
+      reference:
+        loadbalance: roundrobin
+  rabbitmq:
+      host: 127.0.0.1
+      username: cj
+      password: cj123
+      port: 5672
+      virtual-host: /
 
 #Redis缓存配置
 redis:

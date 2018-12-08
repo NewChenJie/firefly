@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.cache.annotation.Cacheable;
 import zool.firefly.util.KeyValue;
 import zool.firefly.util.RedisUtil;
 
@@ -124,5 +125,12 @@ public class RedisController {
         return  null;
     }
 
+
+    @GetMapping("/cache")
+    @Cacheable(value = "test")
+    public String cache(){
+        System.out.println("32222222222222222222222222222");
+        return "I am cache";
+    }
 
 }

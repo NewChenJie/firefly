@@ -67,9 +67,9 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager, ShiroService shiroService) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
-        shiroFilter.setLoginUrl("/user/no/login");
-        shiroFilter.setSuccessUrl("/user/success");
-        shiroFilter.setUnauthorizedUrl("/user/fail");
+//        shiroFilter.setLoginUrl("/user/no/login");
+//        shiroFilter.setSuccessUrl("/user/success");
+//        shiroFilter.setUnauthorizedUrl("/user/fail");
         Map<String, Filter> filterMap = new LinkedHashMap<>(1);
         //自定义角色过滤器
         filterMap.put("roles", rolesAuthorizationFilter());

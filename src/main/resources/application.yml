@@ -3,7 +3,7 @@ version: @project.version@
 
 #服务器基本配置
 server:
- port: 8080
+ port: 8082
  session-timeout: 3600
  uri-encoding: UTF-8
  servlet:
@@ -28,3 +28,4 @@ mapper:
 
 #布隆过滤器中存储redis的天数
 bloomfilter.expireDays: 1
+spring.cache.type :  redis

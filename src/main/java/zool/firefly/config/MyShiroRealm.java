@@ -6,6 +6,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.util.CollectionUtils;
 import zool.firefly.domain.entity.shiro.Authority;
 import zool.firefly.domain.entity.shiro.Role;
@@ -23,8 +24,10 @@ public class MyShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private RoleMapper roleMapper;
+
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
     private AuthorityMapper authorityMapper;
 

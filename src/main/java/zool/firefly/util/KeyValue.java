@@ -13,13 +13,14 @@ import zool.firefly.exception.EntityValidException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.*;
 
 /**
  * 键值对处理类
  */
-public class KeyValue extends HashMap<String, Object> {
+public class KeyValue extends HashMap<String, Object> implements Serializable {
     public static final String STATUS = "status";
     public static final String MSG = "msg";
     public static final String DATA = "data";
