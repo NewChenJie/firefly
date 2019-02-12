@@ -19,10 +19,14 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.listener.ChannelTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scripting.support.ResourceScriptSource;
 import redis.clients.jedis.JedisPoolConfig;
+import zool.firefly.listenner.RedisMessageListener;
 import zool.firefly.util.RedisUtil;
 
 import java.lang.reflect.Method;
@@ -139,6 +143,26 @@ public class RedisConfig extends CachingConfigurerSupport {
         RedisUtil redisUtil = new RedisUtil();
         redisUtil.setRedisTemplate(redisTemplate);
         return redisUtil;
+    }
+
+    /** 任务池 **/
+    @Bean
+    public ThreadPoolTaskScheduler initTaskScheduler() {
+        ThreadPoolTaskScheduler taskPool = new ThreadPoolTaskScheduler();
+        taskPool.setPoolSize(20);
+        return taskPool;
+    }
+
+    /** 监听容器 **/
+    @Bean
+    public RedisMessageListenerContainer initRedisContainer(RedisMessageListener listener) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(jedisConnectionFactory());
+        container.setTaskExecutor(initTaskScheduler());
+        //定义监听渠道
+        ChannelTopic topic = new ChannelTopic("topic1");
+        container.addMessageListener(listener,topic);
+        return container;
     }
 
     /**

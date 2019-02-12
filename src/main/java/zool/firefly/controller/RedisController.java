@@ -5,8 +5,10 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.cache.annotation.Cacheable;
 import zool.firefly.util.KeyValue;
@@ -131,6 +133,37 @@ public class RedisController {
     public String cache(){
         System.out.println("32222222222222222222222222222");
         return "I am cache";
+    }
+
+    @GetMapping("/tra")
+//    @Transactional   开启就能实现整个方法的事务控制
+    public String testT() {
+        redisTemplate.opsForValue().set("one", "one");
+        List list =(List) redisTemplate.execute(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations oper) throws DataAccessException {
+                //设置监控key
+                oper.watch("one");
+                //开启事务，在exec执行前，全部都只是进入队列
+                oper.multi();
+                oper.opsForValue().set("two", "two");
+                oper.opsForValue().increment("one", 1);
+                //获取值为null，因为还在队列里面
+                Object two = oper.opsForValue().get("two");
+                if (two == null) {
+                    System.out.println("插入还没执行");
+                }
+                return oper.exec();
+            }
+        });
+        System.out.println(list);
+        return "OK";
+    }
+
+    @GetMapping("/listener")
+    public String testListener() {
+        redisTemplate.convertAndSend("topic1","hello world");
+        return "发送完毕";
     }
 
 }
